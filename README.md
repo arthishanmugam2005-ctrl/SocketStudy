@@ -53,6 +53,51 @@ Socket programming finds applications in various domains, including web developm
 4.	Networked Games: Online multiplayer games rely on socket programming to facilitate communication between game clients and servers.
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
 
+# Algorithm:
+# Server Side
+Start the program and Import the socket module. Create a socket using the socket() function. Assign a port number for communication. Bind the socket to the specified port using bind() and Put the server socket into listening mode using listen(). Wait for a client connection using accept(). When a client connects, establish the connection. Send a message to the connected client using send()and Close the client connection. Stop the program.
 
-## Result:
+# Client Side
+Start the program. Import the socket module and Create a socket using the socket() function. Specify the server IP address and port number and Connect to the server using connect(). Receive data from the server using recv() and Display the received message. Close the socket connection and Stop the program.
+
+# program:
+# Server
+```import socket
+
+s = socket.socket()
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+port = 12345
+
+s.bind(('127.0.0.1', port))
+s.listen(1)
+print("Server is listening...")
+
+conn, addr = s.accept()
+print("Connected by", addr)
+
+conn.send(b"Hello Client")
+conn.close()
+s.close()
+```
+# Client
+```import socket
+
+s = socket.socket()
+
+port = 12345
+
+# connect to server
+s.connect(('127.0.0.1', port))
+
+print(s.recv(1024).decode())
+
+s.close()
+```
+# OUTPUT
+<img width="522" height="172" alt="Screenshot 2026-01-30 205414" src="https://github.com/user-attachments/assets/96741e3b-318e-4eec-9363-74bfd13d5f85" />
+
+<img width="522" height="172" alt="Screenshot 2026-01-30 205414" src="https://github.com/user-attachments/assets/a38e45b5-6a99-4217-9d78-8bcbac5dcced" />
+
+# Result:
 Thus the study of Socket Programming Completed Successfully
