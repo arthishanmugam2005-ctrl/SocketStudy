@@ -96,7 +96,9 @@ s.close()
 ```
 # OUTPUT
 
-<img width="511" height="192" alt="Screenshot 2026-01-30 205430" src="https://github.com/user-attachments/assets/2c2c03ac-5cf2-494c-877d-2263011a4458" />
+<img width="511" height="192" alt="server" src="https://github.com/user-attachments/assets/5c0f4acc-e592-4688-9391-4e3871052c6a" />
+
+
 <img width="522" height="172" alt="Screenshot 2026-01-30 205414" src="https://github.com/user-attachments/assets/96741e3b-318e-4eec-9363-74bfd13d5f85" />
 
 
