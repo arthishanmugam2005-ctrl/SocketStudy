@@ -64,43 +64,55 @@ Start the program. Import the socket module and Create a socket using the socket
 # Server
 ```import socket
 
-s = socket.socket()
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+# Create socket
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-port = 12345
+# Bind to IP and Port
+server_socket.bind(("127.0.0.1", 8080))
 
-s.bind(('127.0.0.1', port))
-s.listen(1)
-print("Server is listening...")
+# Listen for connections
+server_socket.listen(1)
+print("Server is listening on port 8080...")
 
-conn, addr = s.accept()
-print("Connected by", addr)
+# Accept client connection
+client_socket, client_address = server_socket.accept()
+print("Connected with:", client_address)
 
-conn.send(b"Hello Client")
-conn.close()
-s.close()
+# Receive data
+data = client_socket.recv(1024).decode()
+print("Client says:", data)
+
+# Send reply
+client_socket.send("Hello from Server!".encode())
+
+# Close connections
+client_socket.close()
+server_socket.close()
 ```
 # Client
-```import socket
+```
+import socket
 
-s = socket.socket()
+# Create socket
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-port = 12345
+# Connect to server
+client_socket.connect(("127.0.0.1", 8080))
 
-# connect to server
-s.connect(('127.0.0.1', port))
+# Send message
+client_socket.send("Hello Server!".encode())
 
-print(s.recv(1024).decode())
+# Receive reply
+reply = client_socket.recv(1024).decode()
+print("Server replied:", reply)
 
-s.close()
+# Close socket
+client_socket.close()
 ```
 # OUTPUT
 
-<img width="511" height="192" alt="server" src="https://github.com/user-attachments/assets/5c0f4acc-e592-4688-9391-4e3871052c6a" />
-
-
-<img width="522" height="172" alt="Screenshot 2026-01-30 205414" src="https://github.com/user-attachments/assets/96741e3b-318e-4eec-9363-74bfd13d5f85" />
-
+![alt text](SERVER.png)
+![alt text](CLIENT.png)
 
 # Result:
 Thus the study of Socket Programming Completed Successfully
